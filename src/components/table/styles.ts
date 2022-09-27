@@ -20,8 +20,8 @@ export const getTableStyles = (isAlternatingColumnsAreGray, shouldEnableFirstCol
   const theStickiness = shouldEnableFirstColumnSticky && { position: 'sticky', left: '0px' };
 
   let comparisonFirstColumnWidth = '50%';
-  if (columnHeaders.length > 4) comparisonFirstColumnWidth = '35%';
-  if (columnHeaders.length > 6) comparisonFirstColumnWidth = '25%';
+  if (columnHeaders?.length > 4) comparisonFirstColumnWidth = '35%';
+  if (columnHeaders?.length > 6) comparisonFirstColumnWidth = '25%';
 
   return {
     mt: 0,

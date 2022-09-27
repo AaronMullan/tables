@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx, Flex } from 'theme-ui';
-import Dropdown from '@sprinklr/shared-lib/components/Dropdown';
+import { jsx, Flex, Select, Label } from 'theme-ui';
+// import Dropdown from '@sprinklr/shared-lib/components/Dropdown';
 
 type TableFilterTypes = {
   options: any;
@@ -8,8 +8,14 @@ type TableFilterTypes = {
   setValue: any;
 };
 
-const TableFilter: React.FC<TableFilterTypes> = ({ options, value, setValue }) => {
-  const filterOptions = options.slice(2).map(el => ({ value: el, label: el }));
+const TableFilter: React.FC<TableFilterTypes> = ({
+  options,
+  value,
+  setValue,
+}) => {
+  const filterOptions = options
+    .slice(2)
+    .map((el: any) => ({ value: el, label: el }));
 
   return (
     <Flex
@@ -20,8 +26,8 @@ const TableFilter: React.FC<TableFilterTypes> = ({ options, value, setValue }) =
         textAlign: 'center',
       }}
     >
-      <Dropdown
-        labelSx={{
+      <Label
+        sx={{
           flexDirection: ['column', 'row'],
           textAlign: 'left',
           color: 'spaceGrey',
@@ -29,12 +35,15 @@ const TableFilter: React.FC<TableFilterTypes> = ({ options, value, setValue }) =
           width: ['100%', 'auto'],
           span: { padding: '12px 15px 12px 0px' },
         }}
-        dropdownSx={{ minWidth: '315px' }}
-        value={value}
-        setValue={setValue}
-        customDropdownLabel={'Compare'}
-        options={filterOptions}
-      />
+      >
+        <Select
+        // sx={{ minWidth: '315px' }}
+        // value={value}
+        // setValue={setValue}
+        // customDropdownLabel={'Compare'}
+        // options={filterOptions}
+        />
+      </Label>
     </Flex>
   );
 };

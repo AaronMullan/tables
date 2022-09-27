@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx, Flex } from 'theme-ui';
-import { RichText } from '@sprinklr/shared-lib';
+import RichText from '../RichText/RichText';
 import ProgressBar from './ProgressBar';
-import BlueCheck from '../assets/svgs/blueCheck.svg';
-import GreyX from '../shared-lib/assets/svgs/greyX.svg';
+import BlueCheck from '../../assets/BlueCheck.svg';
+import GreyX from '../../assets/greyX.svg';
 
 type TableCellTypes = {
   data: {
@@ -18,7 +18,7 @@ type TableCellTypes = {
   };
 };
 
-const TableCell: React.FC<TableCellTypes> = props => {
+const TableCell: React.FC<TableCellTypes> = (props) => {
   const {
     url,
     cellValueType,

@@ -5,7 +5,7 @@ import TableCell from './TableCell';
 const TableRow = ({ row }) => {
   return (
     <tr>
-      {row.tableCells.map(element => (
+      {row.tableCells.map((element) => (
         <TableCell data={element} />
       ))}
     </tr>

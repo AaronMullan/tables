@@ -1,8 +1,14 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui';
-import { RichText } from '@sprinklr/shared-lib';
+import RichText from '../RichText/RichText';
 
-const TableHeader = ({ cellValueType, url, comparisonTableCustomText, regularTableText, comparisonDropdownValueText }) => {
+const TableHeader = ({
+  cellValueType,
+  url,
+  comparisonTableCustomText,
+  regularTableText,
+  comparisonDropdownValueText,
+}) => {
   switch (cellValueType) {
     case 'Regular Table Text':
       return (

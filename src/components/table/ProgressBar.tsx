@@ -9,17 +9,17 @@ type ProgressBarTypes = {
 };
 
 const ProgressBar: React.FC<ProgressBarTypes> = ({
-  progressBarColor,
-  progressBarNumerator,
-  progressBarDenominator,
+  progressBarColor = 'Gray',
+  progressBarNumerator = 0,
+  progressBarDenominator = 0,
   progressBarAsStars,
 }) => {
   // convert ratio to percentage for regular progress bar
   const progressPercentage =
     (progressBarNumerator / progressBarDenominator) * 100;
-  // convert ratio to percinquage for progress bar as stars
+  // convert ratio to percinquage for progress bar as stars, round to one decimal
   const progressPercinquage =
-    (progressBarNumerator / progressBarDenominator) * 5;
+    Math.round((progressBarNumerator / progressBarDenominator) * 5 * 10) / 10;
   const label = progressBarAsStars
     ? `${progressPercinquage} / 5`
     : `${progressBarNumerator} / ${progressBarDenominator}`;
@@ -86,10 +86,10 @@ const ProgressBar: React.FC<ProgressBarTypes> = ({
         )}
       </Box>
       <label
-        sx={{
+        style={{
           fontSize: '14px',
           lineHeight: 1,
-          mt: '4px',
+          marginTop: '4px',
           color: 'hsla(240, 6%, 42%, 1)',
           textAlign: 'center',
         }}

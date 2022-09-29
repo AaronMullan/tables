@@ -10,6 +10,8 @@ import { useBreakpointIndex } from '@theme-ui/match-media';
 
 const Table = (props) => {
   const {
+    nodes,
+    title,
     isAlternatingColumnsAreGray,
     isComparison,
     isFootnoteLeftAligned,
@@ -83,6 +85,7 @@ const Table = (props) => {
               <table sx={{ boxShadow: 0 }}>
                 {displayHeaders?.map((element) => (
                   <TableHeader
+                    key={element.id}
                     cellValueType={element?.cellValueType}
                     url={element?.customizableAsset?.url}
                     comparisonTableCustomText={
@@ -96,7 +99,7 @@ const Table = (props) => {
                 ))}
                 <tbody>
                   {displayRows?.map((element) => (
-                    <TableRow row={element} />
+                    <TableRow row={element} key={element?.id} />
                   ))}
                 </tbody>
               </table>
@@ -113,4 +116,14 @@ const Table = (props) => {
   );
 };
 
+// export const TableTemplateQuery = graphql`
+//   {
+//     allContentfulTable {
+//       nodes {
+//         id
+//         title
+//       }
+//     }
+//   }
+// `;
 export default Table;

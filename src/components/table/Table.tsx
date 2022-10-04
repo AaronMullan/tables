@@ -82,7 +82,7 @@ const Table: React.FC<TableTypes> = (props) => {
   const footnoteStyles = getFootnoteStyles(isFootnoteLeftAligned);
 
   return (
-    <Box sx={{ mt: 5, width: 'fit-content' }}>
+    <Box sx={{ mt: 5 }}>
       <h3>{title}</h3>
       {enableFilter && (
         <TableFilter

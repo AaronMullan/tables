@@ -18,11 +18,17 @@ const IndexPage = () => {
           padding: '20px',
           width: '100%',
           boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)',
+          color: 'white',
+          background: 'black',
+          borderRadius: '10px',
         }}
       >
         <h1>Customizable Tables</h1>
         <h2>Fully Responsive</h2>
-        <p>Content being provided by Contentful CMS.</p>
+
+        <p>
+          <strong>Content being provided by Contentful CMS.</strong>
+        </p>
         <p>
           <strong>Cell Types:</strong>
         </p>

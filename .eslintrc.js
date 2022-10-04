@@ -5,7 +5,7 @@ module.exports = {
     },
     "extends": [
         "plugin:react/recommended",
-        // "airbnb"
+        "airbnb"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -20,6 +20,8 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-        "react/prop-types": 0
+        "react/prop-types": 0,
+        "react/no-unknown-property": [{enabled: 0}],
+        "react/no-unescaped-entities": [{enabled: 0 }]
     }
 };

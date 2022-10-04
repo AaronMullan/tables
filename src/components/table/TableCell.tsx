@@ -2,8 +2,8 @@
 import { jsx, Flex } from 'theme-ui';
 import RichText from '../RichText/RichText';
 import ProgressBar from './ProgressBar';
-import BlueCheck from '../../assets';
-import GreyX from '../../assets/greyX.svg';
+// import BlueCheck from '../../assets';
+// import GreyX from '../../assets/greyX.svg';
 
 type TableCellTypes = {
   data: {
@@ -13,8 +13,8 @@ type TableCellTypes = {
     progressBarAsStars?: boolean;
     url?: string;
     cellValueType?: string;
-    regularTableText?: any;
-    comparisonTableCustomText?: string;
+    richText?: any;
+    plainText?: string;
   };
 };
 
@@ -26,12 +26,12 @@ const TableCell: React.FC<TableCellTypes> = (props) => {
     progressBarDenominator,
     progressBarNumerator,
     progressBarAsStars,
-    regularTableText,
-    comparisonTableCustomText,
+    richText,
+    plainText,
   } = props.data;
 
   switch (cellValueType) {
-    case 'Regular Table Text':
+    case 'Rich Text':
       return (
         <td
           sx={{
@@ -46,13 +46,13 @@ const TableCell: React.FC<TableCellTypes> = (props) => {
             backgroundColor: 'inherit',
           }}
         >
-          <RichText richTextObject={regularTableText} />
+          <RichText richTextObject={richText} />
         </td>
       );
-    case 'Comparison Table Custom Text':
+    case 'Plain Text':
       return (
         <td sx={{ fontSize: ['14px', '16px'], px: '20px', py: '10px' }}>
-          <p>{comparisonTableCustomText}</p>
+          <p>{plainText}</p>
         </td>
       );
     case 'Customizable Asset':
@@ -79,19 +79,22 @@ const TableCell: React.FC<TableCellTypes> = (props) => {
             textAlign: 'center',
             svg: {
               verticalAlign: 'middle',
+              margin: '0 auto'
             },
           }}
         >
+          <div style={{display: 'grid'}}>
                 <svg width="18" height="18" viewBox="0 0 18 18" aria-labelledby="blueCheckTitle" role="img">
   <title id="blueCheckTitle">Checkmark</title>
   fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
+              fillRule="evenodd"
+              clipRule="evenodd"
               d="M9 18C13.9706 18 18 13.9706 18 9C18 4.02944 13.9706 0 9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18ZM13.7721 6.80336L8.10446 12.4704C7.92868 12.6462 7.69891 12.7341 7.46788 12.7341C7.24564 12.7341 7.02466 12.6525 6.85139 12.4893L4.24857 10.0384C3.88571 9.69747 3.86939 9.12807 4.20965 8.76583C4.54991 8.40485 5.11995 8.38728 5.48155 8.72754L7.44905 10.5795L12.499 5.5302C12.8506 5.17864 13.4206 5.17864 13.7721 5.5302C14.1237 5.88177 14.1237 6.4518 13.7721 6.80336Z"
               fill="#00BAE9"
             />
           </svg>
+          </div>
         </td>
       );
     case 'Gray X':
@@ -101,9 +104,11 @@ const TableCell: React.FC<TableCellTypes> = (props) => {
             textAlign: 'center',
             svg: {
               verticalAlign: 'middle',
+              margin: '0 auto'
             },
           }}
         >
+          <div style={{display: 'grid'}}>
            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-labelledby="greyXTitle" role="img">
           <title id="greyXTitle">X</title>
             <path
@@ -111,6 +116,7 @@ const TableCell: React.FC<TableCellTypes> = (props) => {
               fill="#A0A0A8"
             />
           </svg>
+          </div>
         </td>
       );
     case 'Blank':

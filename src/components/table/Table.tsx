@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Key } from 'react';
 import { jsx, Box } from 'theme-ui';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
@@ -8,9 +8,19 @@ import { getTableStyles, getFootnoteStyles } from './styles';
 import RichText from '../RichText/RichText';
 import { useBreakpointIndex } from '@theme-ui/match-media';
 
-const Table = (props) => {
+type TableTypes = {
+  title: string;
+  isAlternatingColumnsAreGray: boolean;
+  isComparison: boolean;
+  isFootnoteLeftAligned: boolean;
+  isRegularTableFirstColumnSticky: boolean;
+  footnote: string;
+  columnHeaders: any;
+  rows: any;
+};
+
+const Table: React.FC<TableTypes> = (props) => {
   const {
-    nodes,
     title,
     isAlternatingColumnsAreGray,
     isComparison,
@@ -22,11 +32,17 @@ const Table = (props) => {
   } = props;
 
   const dropDownOptions =
-    columnHeaders && columnHeaders.map((el) => el?.comparisonDropdownValueText);
+    columnHeaders &&
+    columnHeaders.map(
+      (columnHeader: { comparisonValueDropdownText: string }) =>
+        columnHeader?.comparisonValueDropdownText
+    );
+
+  //only show filter dropdown at tablet and below sizes, set state of selected column to compare
   const [comparisonValue, setComparisonValue] = useState(dropDownOptions?.[2]);
   const [comparisonIndex, setComparisonIndex] = useState(2);
   const bpIndex = useBreakpointIndex();
-  const enableFilter = isComparison && bpIndex < 2 && columnHeaders.length > 3;
+  const enableFilter = isComparison && bpIndex < 2 && columnHeaders?.length > 3;
 
   useEffect(() => {
     setComparisonIndex(
@@ -44,27 +60,30 @@ const Table = (props) => {
     ];
   const displayHeaders = enableFilter ? filteredHeaders : columnHeaders;
   if (enableFilter)
-    filteredRows = rows.map((el) => ({
+    filteredRows = rows.map((row: { tableCells: any[] }) => ({
       tableCells: [
-        el?.tableCells[0],
-        el?.tableCells[1],
-        el?.tableCells[comparisonIndex],
+        row?.tableCells[0],
+        row?.tableCells[1],
+        row?.tableCells[comparisonIndex],
       ],
     }));
   const displayRows = enableFilter ? filteredRows : rows;
 
   const shouldEnableFirstColumnSticky =
     !isComparison && isRegularTableFirstColumnSticky;
+
   const tableStyles = getTableStyles(
     isAlternatingColumnsAreGray,
     shouldEnableFirstColumnSticky,
     isComparison,
     columnHeaders
   );
+  console.log(tableStyles);
   const footnoteStyles = getFootnoteStyles(isFootnoteLeftAligned);
 
   return (
-    <Box sx={{ mt: 5 }}>
+    <Box sx={{ mt: 5, width: 'fit-content' }}>
+      <h3>{title}</h3>
       {enableFilter && (
         <TableFilter
           options={dropDownOptions}
@@ -83,23 +102,36 @@ const Table = (props) => {
           <Box sx={{ justifyContent: 'center', height: 'auto' }}>
             <Box sx={{ borderRadius: '10px', boxShadow: 0 }}>
               <table sx={{ boxShadow: 0 }}>
-                {displayHeaders?.map((element) => (
-                  <TableHeader
-                    key={element.id}
-                    cellValueType={element?.cellValueType}
-                    url={element?.customizableAsset?.url}
-                    comparisonTableCustomText={
-                      element?.comparisonTableCustomText
-                    }
-                    regularTableText={element?.regularTableText}
-                    comparisonDropdownValueText={
-                      element?.comparisonDropdownValueText
-                    }
-                  />
-                ))}
+                <thead>
+                  <tr>
+                    {displayHeaders?.map(
+                      (element: {
+                        id: Key | null | undefined;
+                        cellValueType: any;
+                        customizableAsset: { url: any };
+                        plainText: any;
+                        richText: any;
+                        comparisonDropdownValueText: any;
+                        asset: any;
+                      }) => (
+                        <TableHeader
+                          key={element?.id}
+                          cellValueType={element?.cellValueType}
+                          url={element?.customizableAsset?.url}
+                          plainText={element?.plainText}
+                          richText={element?.richText}
+                          comparisonDropdownValueText={
+                            element?.comparisonDropdownValueText
+                          }
+                          asset={element.asset}
+                        />
+                      )
+                    )}
+                  </tr>
+                </thead>
                 <tbody>
-                  {displayRows?.map((element) => (
-                    <TableRow row={element} key={element?.id} />
+                  {displayRows?.map((element: any, i: number) => (
+                    <TableRow row={element} key={`${element?.id} + ${i}`} />
                   ))}
                 </tbody>
               </table>
@@ -116,14 +148,4 @@ const Table = (props) => {
   );
 };
 
-// export const TableTemplateQuery = graphql`
-//   {
-//     allContentfulTable {
-//       nodes {
-//         id
-//         title
-//       }
-//     }
-//   }
-// `;
 export default Table;

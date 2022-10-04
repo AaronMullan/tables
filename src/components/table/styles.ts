@@ -1,23 +1,24 @@
 export const getTableStyles = (isAlternatingColumnsAreGray, shouldEnableFirstColumnSticky, isComparison, columnHeaders) => {
   const theGreyness = isAlternatingColumnsAreGray
     ? {
-        'tbody td:nth-child(odd)': {
+        'tbody td:nth-of-type(odd)': {
           backgroundColor: '#F8F8FA',
         },
-        'tbody td:nth-child(even)': {
+        'tbody td:nth-of-type(even)': {
           backgroundColor: 'inherit',
         },
       }
     : {
-        'tbody tr:nth-child(even)': {
+        'tbody tr:nth-of-type(even)': {
           backgroundColor: '#F8F8FA',
         },
-        'tbody tr:nth-child(odd)': {
+        'tbody tr:nth-of-type(odd)': {
           backgroundColor: 'inherit',
         },
       };
 
-  const theStickiness = shouldEnableFirstColumnSticky && { position: 'sticky', left: '0px' };
+  const theStickiness = shouldEnableFirstColumnSticky ? { position: 'sticky', left: '0px', top: '0' } : null;
+  console.log(shouldEnableFirstColumnSticky, theStickiness)
 
   let comparisonFirstColumnWidth = '50%';
   if (columnHeaders?.length > 4) comparisonFirstColumnWidth = '35%';
@@ -72,14 +73,14 @@ export const getTableStyles = (isAlternatingColumnsAreGray, shouldEnableFirstCol
       p: { margin: 0 },
     },
     ...theGreyness,
-    'th:first-child': {
+    'th:first-of-type': {
       textAlign: 'left',
       borderLeft: 'none',
       borderRight: shouldEnableFirstColumnSticky ? '1px solid #E7E7ED' : 'none',
       ...theStickiness,
       width: isComparison ? ['50%', comparisonFirstColumnWidth] : 'auto',
     },
-    'td:first-child': {
+    'td:first-of-type': {
       fontWeight: 'bold',
       alignSelf: 'flex-start',
       textAlign: 'left',

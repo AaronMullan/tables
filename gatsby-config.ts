@@ -18,7 +18,7 @@ const config: GatsbyConfig = {
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-theme-ui", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
     options: {
-      "icon": "👨‍🎤"
+      "icon": "./src/images/singer.png"
     }
   }, "gatsby-transformer-remark", {
     resolve: 'gatsby-source-filesystem',

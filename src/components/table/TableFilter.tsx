@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, Flex, Select, Label } from 'theme-ui';
-// import Dropdown from '@sprinklr/shared-lib/components/Dropdown';
 
 type TableFilterTypes = {
   options: any;
@@ -13,6 +12,7 @@ const TableFilter: React.FC<TableFilterTypes> = ({
   value,
   setValue,
 }) => {
+  // We only want the options after the second column to be available
   const filterOptions = options
     .slice(2)
     .map((el: any) => ({ value: el, label: el }));
@@ -36,13 +36,22 @@ const TableFilter: React.FC<TableFilterTypes> = ({
           span: { padding: '12px 15px 12px 0px' },
         }}
       >
+        <span sx={{ mb: 2 }}>Compare</span>
         <Select
-        // sx={{ minWidth: '315px' }}
-        // value={value}
-        // setValue={setValue}
-        // customDropdownLabel={'Compare'}
-        // options={filterOptions}
-        />
+          sx={{ minWidth: '315px' }}
+          value={value}
+          onChange={(el) => setValue(el.target.value)}
+        >
+          {filterOptions &&
+            filterOptions.map((filterOption, i) => (
+              <option
+                value={filterOption?.value}
+                key={`${filterOption?.value} + ${i}`}
+              >
+                {filterOption?.label}
+              </option>
+            ))}
+        </Select>
       </Label>
     </Flex>
   );

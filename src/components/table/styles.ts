@@ -27,7 +27,6 @@ export const getTableStyles = (isAlternatingColumnsAreGray, shouldEnableFirstCol
   return {
     mt: 0,
     p: { fontSize: [0, 2] },
-    // width: isComparison ? 'fit-content' : 'auto',
     width: isComparison ? ['100%', 'fit-content'] : 'auto',
     borderCollapse: 'collapse',
     display: 'flex',

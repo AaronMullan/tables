@@ -3,20 +3,23 @@ import { jsx } from 'theme-ui';
 import RichText from '../RichText/RichText';
 
 const TableHeader = ({
+  id,
   cellValueType,
   url,
-  comparisonTableCustomText,
-  regularTableText,
+  plainText,
+  richText,
   comparisonDropdownValueText,
+  asset,
 }) => {
   switch (cellValueType) {
-    case 'Regular Table Text':
+    case 'Rich Text':
       return (
         <th
           sx={{
+            background: 'black',
             textAlign: 'left',
             p: {
-              mb: 0,
+              marginBottom: 0,
               fontSize: ['14px', '16px'],
               lineHeight: ['1.4', '1.6'],
               fontWeight: 'inherit',
@@ -24,29 +27,30 @@ const TableHeader = ({
             },
           }}
         >
-          <RichText richTextObject={regularTableText} />
+          <RichText richTextObject={richText} />
         </th>
       );
-    case 'Comparison Table Custom Text':
+    case 'Plain Text':
       return (
-        <th sx={{ verticalAlign: 'middle' }}>
-          <p>{comparisonTableCustomText}</p>
+        <th style={{ verticalAlign: 'middle', background: 'black' }}>
+          <p>{plainText}</p>
         </th>
       );
-    case 'Customizable Asset':
+    case 'Asset':
       return (
         <th
-          sx={{
+          style={{
             verticalAlign: 'middle',
+            background: 'black',
           }}
         >
-          <img src={url} alt={comparisonDropdownValueText} />
+          <img src={asset?.url} alt={comparisonDropdownValueText} />
         </th>
       );
     case 'Blank':
-      return <th></th>;
+      return <th style={{ background: 'black' }}></th>;
     default:
-      return <th>defualt</th>;
+      return <th style={{ background: 'black' }}>defualts</th>;
   }
 };
 

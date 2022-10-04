@@ -9,7 +9,7 @@ import { graphql } from 'gatsby';
 //     }
 //   }
 // }
-`
+// `
 
 // const TableTemplateQuery = graphql`
 //   fragment ContentfulTemplateTableNode on Node {
@@ -56,4 +56,4 @@ import { graphql } from 'gatsby';
 //   }
 // `;
 
-export { TableTemplateQuery };
+// export { TableTemplateQuery };

@@ -9,7 +9,6 @@ const IndexPage = () => {
   const data = useGetData();
 
   const tables = data?.allContentfulTable?.nodes;
-  tables.forEach((e) => console.log(e));
 
   return (
     <main style={{ fontFamily: '-apple-system, Roboto, sans-serif, serif' }}>
@@ -29,6 +28,24 @@ const IndexPage = () => {
         <p>
           <strong>Content being provided by Contentful CMS.</strong>
         </p>
+        <p>
+          <strong>Features:</strong>
+        </p>
+        <ul>
+          <li>Table Title</li>
+          <li>Can alternate columns or rows as gray</li>
+          <li>Footnote (can be left aligned)</li>
+          <li>
+            Responsive Options:
+            <ul>
+              <li>"Regular" table can have first column sticky</li>
+              <li>
+                "Comparison" table switches to dropdown-controlled 3 column view
+                at tablet and mobile sizes
+              </li>
+            </ul>
+          </li>
+        </ul>
         <p>
           <strong>Cell Types:</strong>
         </p>

@@ -72,17 +72,22 @@ const Table: React.FC<TableTypes> = (props) => {
   const shouldEnableFirstColumnSticky =
     !isComparison && isRegularTableFirstColumnSticky;
 
+  //get conditional styles
   const tableStyles = getTableStyles(
     isAlternatingColumnsAreGray,
     shouldEnableFirstColumnSticky,
     isComparison,
     columnHeaders
   );
-  console.log(tableStyles);
   const footnoteStyles = getFootnoteStyles(isFootnoteLeftAligned);
 
   return (
-    <Box sx={{ mt: 5 }}>
+    <Box
+      sx={{
+        mt: 5,
+        width: !isComparison ? ['auto', null, 'fit-content'] : 'auto',
+      }}
+    >
       <h3>{title}</h3>
       {enableFilter && (
         <TableFilter
@@ -117,7 +122,6 @@ const Table: React.FC<TableTypes> = (props) => {
                         <TableHeader
                           key={element?.id}
                           cellValueType={element?.cellValueType}
-                          url={element?.customizableAsset?.url}
                           plainText={element?.plainText}
                           richText={element?.richText}
                           comparisonDropdownValueText={

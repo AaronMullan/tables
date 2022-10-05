@@ -1,11 +1,18 @@
 /** @jsx jsx */
+import { ContentfulRichTextGatsbyReference } from 'gatsby-source-contentful/rich-text';
 import { jsx } from 'theme-ui';
 import RichText from '../RichText/RichText';
 
-const TableHeader = ({
-  id,
+type TableHeaderTypes = {
+  cellValueType: string;
+  plainText: string;
+  richText: ContentfulRichTextGatsbyReference;
+  comparisonDropdownValueText: string;
+  asset: any;
+};
+
+const TableHeader: React.FC<TableHeaderTypes> = ({
   cellValueType,
-  url,
   plainText,
   richText,
   comparisonDropdownValueText,

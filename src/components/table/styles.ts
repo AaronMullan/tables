@@ -1,4 +1,4 @@
-export const getTableStyles = (isAlternatingColumnsAreGray, shouldEnableFirstColumnSticky, isComparison, columnHeaders) => {
+export const getTableStyles = (isAlternatingColumnsAreGray: boolean, shouldEnableFirstColumnSticky: boolean, isComparison: boolean, columnHeaders: string | any[]) => {
   const theGreyness = isAlternatingColumnsAreGray
     ? {
         'tbody td:nth-of-type(odd)': {
@@ -97,7 +97,7 @@ export const getTableStyles = (isAlternatingColumnsAreGray, shouldEnableFirstCol
   };
 };
 
-export const getFootnoteStyles = isFootnoteLeftAligned => {
+export const getFootnoteStyles = (isFootnoteLeftAligned: boolean) => {
   return {
     width: '100%',
     textAlign: isFootnoteLeftAligned ? 'left' : 'center',

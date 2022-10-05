@@ -2,8 +2,6 @@
 import { jsx, Flex } from 'theme-ui';
 import RichText from '../RichText/RichText';
 import ProgressBar from './ProgressBar';
-// import BlueCheck from '../../assets';
-// import GreyX from '../../assets/greyX.svg';
 
 type TableCellTypes = {
   data: {

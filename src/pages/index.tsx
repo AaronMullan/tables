@@ -18,7 +18,7 @@ const IndexPage = () => {
           width: '100%',
           boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)',
           color: 'white',
-          background: 'black',
+          background: 'linear-gradient(360deg, #1C1C1C 10%, #494949 360%)',
           borderRadius: '10px',
         }}
       >

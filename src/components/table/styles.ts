@@ -18,7 +18,6 @@ export const getTableStyles = (isAlternatingColumnsAreGray: boolean, shouldEnabl
       };
 
   const theStickiness = shouldEnableFirstColumnSticky ? { position: 'sticky', left: '0px', top: '0' } : null;
-  console.log(shouldEnableFirstColumnSticky, theStickiness)
 
   let comparisonFirstColumnWidth = '50%';
   if (columnHeaders?.length > 4) comparisonFirstColumnWidth = '35%';

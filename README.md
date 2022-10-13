@@ -1,5 +1,7 @@
 # React Custom Table Component
 
+**Deployed site:** https://table-showcase.netlify.app/
+
 ## Fully Responsive
 
 Content being provided by Contentful CMS.

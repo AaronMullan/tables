@@ -26,7 +26,19 @@ const IndexPage = () => {
         <h2>Fully Responsive</h2>
 
         <p>
-          <strong>Content being provided by Contentful CMS.</strong>
+          <strong>
+            Content being provided by Contentful CMS.
+            <br />
+            Code:{' '}
+          </strong>
+          <a
+            href="https://github.com/AaronMullan/tables"
+            target="blank"
+            rel="noopener noreferrer"
+            style={{ color: 'white' }}
+          >
+            github.com/AaronMullan/tables
+          </a>
         </p>
         <p>
           <strong>Features:</strong>
